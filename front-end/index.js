@@ -1,11 +1,11 @@
 import React from "react";
 import { render } from "react-dom";
-import ChatApp from "./src/ChatApp"; //ajax responds tester
+import Crud from "./src/Crud";
 
 const Index = () => {
 	return (
 		<div>
-			<ChatApp />
+			<Crud />
 			<style jsx global>{`
 				* {
 					box-sizing: border-box;
