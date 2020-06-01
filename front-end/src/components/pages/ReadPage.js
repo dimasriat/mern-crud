@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../Layout";
 import color from "../utils/color";
+import Axios from "axios";
 
 const ReadPage = (props) => {
+	const [panitia, setPanitia] = useState([]);
+	useEffect(() => {
+		Axios.get("http://localhost:8000/data")
+			.then((response) => response.data)
+			.then((data) => {
+				setPanitia([...data]);
+			});
+	}, []);
 	return (
 		<Layout title="View The Data">
 			<table>
@@ -15,12 +24,16 @@ const ReadPage = (props) => {
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>Dimas Riatmodjo</td>
-						<td>085867494951</td>
-						<td>Koor. Web</td>
-						<td>bentar</td>
-					</tr>
+					{panitia.map((orang) => (
+						<tr key={orang.id}>
+							<td>{orang.nama}</td>
+							<td>{orang.whatsapp}</td>
+							<td>{orang.bidang}</td>
+							<td>
+								<a href={`http://localhost:8000/assets/uploaded/${orang.foto}`}>{orang.foto}</a>
+							</td>
+						</tr>
+					))}
 				</tbody>
 			</table>
 			<style jsx>{`

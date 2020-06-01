@@ -24,7 +24,12 @@ const CreatePage = (props) => {
 
 		Axios.post("http://localhost:8000/add", formData)
 			.then((response) => response.data)
-			.then((data) => alert(data));
+			.then((data) => {
+				console.log(data);
+				inputRef.nama.current.value = "";
+				inputRef.whatsapp.current.value = "";
+				inputRef.bidang.current.value = "";
+			});
 	};
 
 	return (
